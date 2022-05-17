@@ -4,11 +4,9 @@
  * The sum of these multiples is 23. Find the sum of all the multiples of 3 or 5 below 1000.
  */
 
-// The function receives two parameters.
-// limit: is an integer that indicates how far the factors are searched.
-// multiple: the indicator with which the factors will be searched
-
-function sumOfMultiples(limit, multiple) {
+// Find all numbers that are multiples of |multiple| below |limit|,
+// and are grouped into an array which is returned by the |multipleNumbers| function.
+function multipleNumbers(limit, multiple) {
   // numbers that are multiples are validated
   let numbersMultiples = [];
   for (let i = 1; i < limit; i++) {
@@ -18,21 +16,24 @@ function sumOfMultiples(limit, multiple) {
       break;
     }
   }
-  console.log(numbersMultiples);
-  // the sum of all the multiples added to the array is returned |numbersMultiples|
-  return numbersMultiples.reduce((a, b) => a + b);
+  return numbersMultiples;
+}
+
+// This function receives two arrays and checks that there are no duplicate values.
+// Returns the sum of the values ​​of the first array plus the non-repeating values
+// ​​of the second array.
+function sumOfMultiples(arr1, arr2) {
+  for (let i = 0; i < arr2.length; i++) {
+    // console.log(arr1.indexOf(arr2[i]));
+    if (arr1.indexOf(arr2[i]) == -1) {
+      arr1.push(arr2[i]);
+    }
+  }
+  return arr1.reduce((a, b) => a + b);
 }
 
 /**
  * Problem answer
  */
 
-console.log(sumOfMultiples(1000, 3) + sumOfMultiples(1000, 5)); // 266333
-
-/*
-  for (let i = 1; i < limit; i++) {
-    if ((i / multiple) % 1 == 0) {
-      numbersMultiples.push(i);
-    }
-  }
-  */
+console.log(sumOfMultiples(multipleNumbers(1000, 3), multipleNumbers(1000, 5))); // 233168
